@@ -1,0 +1,45 @@
+import time
+
+
+def set_timer(seconds):
+    print(f"⏳ Timer set for {seconds} seconds...")
+
+    while seconds:
+        mins, secs = divmod(seconds, 60)
+        print(f"{mins:02d}:{secs:02d}", end="\r")
+        time.sleep(1)
+        seconds -= 1
+
+    print("\n⏰ Time's up!")
+
+
+def set_alarm(alarm_time):
+    print(f"⏰ Alarm set for {alarm_time}")
+
+    while True:
+        current_time = time.strftime("%H:%M:%S")
+        if current_time == alarm_time:
+            print("🔔 Wake up! Alarm ringing!")
+            break
+        time.sleep(1)
+
+
+def main():
+    print("Alarm Clock / Timer")
+
+    choice = input("Choose mode (1 = Timer, 2 = Alarm): ")
+
+    if choice == "1":
+        seconds = int(input("Enter time in seconds: "))
+        set_timer(seconds)
+
+    elif choice == "2":
+        alarm_time = input("Set alarm time (HH:MM:SS): ")
+        set_alarm(alarm_time)
+
+    else:
+        print("Invalid choice.")
+
+
+if __name__ == "__main__":
+    main()
